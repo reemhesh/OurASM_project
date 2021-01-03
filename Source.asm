@@ -17,8 +17,11 @@ ORG 100H         ;starts code at address 100H
   OUT CR, AL    ;outputs(copies) value of AL 80H=1000000B  to I/O port CR 
   
  
-START:
-  ;Half mode clockwise 8steps each step is 45ú
+START:          ;THE MAIN CODE
+ IN AL, PORTB   ;Copies value of port B to AL (the value of the 8 bits of portB)
+ CMP AL,01H     ; compares Al with 000000001B (which is the value results from logicstate)
+ JE FULL        ;if Al = 01H jumps to Full(Full clockwise mode) else compelte the code(goes to HALFCW)
+HALFCW:    ;Half mode clockwise 8steps each step is 45ú
    MOV AL, 00001000B  ;moves 08H to AL
   OUT PORTA,AL        ;outputs(copies) value of AL 08H  to I/O port PORTA which means the coil A(for example) is set to 1 
                       ;and the rest 3 coils set to 0
@@ -61,6 +64,7 @@ CALL DELAY ;DELAY
 ;--------------------
 CALL DELAY ;DELAY  
 ;--------------------
+JMP HALFCW
 ;Half mode anti clockwise 
 MOV AL, 00001001B      
   OUT PORTA,AL
