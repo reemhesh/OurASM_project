@@ -3,26 +3,22 @@ INCLUDE Irvine32.inc
 .model small
 .stack 100h
 .data
-;msg db "enter 1st no",0
-msg1 db "enter 2n no ",0
-var dd ?
-var1 dd ?
-msg2 db "numbers are equal ",0
-msg3 db "numbers not equal ",0;
+
 
 .code
     main proc
     
   PORTA  EQU 00H    ;Address of Port A = 00H
+  PORTB  EQU 02H    ;Address of Port B = 02H
  CR EQU 06H    ;Address of Control register = 06H
 ORG 100H         ;starts code at address 100H
   
-  MOV AL, 10000000B ; means I/O device operates in I/O operatio mode and ports A,B,C are used as outputs with mode0
+  MOV AL, 10000010B ; means I/O device operates in I/O operatio mode and ports A,C are used as outputs and B as input with mode0
   OUT CR, AL    ;outputs(copies) value of AL 80H=1000000B  to I/O port CR 
   
  
 START:
-  ;Half mode clockwise 8steps each step is 45ú
+  ;Half mode clockwise 8steps each step is 45Ãº
    MOV AL, 00001000B  ;moves 08H to AL
   OUT PORTA,AL        ;outputs(copies) value of AL 08H  to I/O port PORTA which means the coil A(for example) is set to 1 
                       ;and the rest 3 coils set to 0
