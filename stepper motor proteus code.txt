@@ -1,5 +1,6 @@
 CODE SEGMENT
  PORTA  EQU 00H    ;Address of Port A = 00H
+ PORTB  EQU 02H    ;Address of Port B= 02H
  CR EQU 06H    ;Address of Control register = 06H
 ORG 100H         ;starts code at address 100H
   
