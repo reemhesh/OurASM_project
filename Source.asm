@@ -127,7 +127,7 @@ CALL DELAY ;DELAY
 ;--------------------
 CALL DELAY ;DELAY 
 ;-----------------
-;full mode clock wise
+FULL:   ;full mode clock wise
 MOV AL, 000000011B
   OUT PORTA,AL
 ;--------------------
@@ -147,6 +147,8 @@ CALL DELAY ;DELAY
   OUT PORTA,AL
 ;--------------------
 CALL DELAY ;DELAY 
+JMP FULL
+;--------
  DELAY PROC         ; DELAY PROCEDURE  
   MOV CX, 0FFFFH     ;uses counter CX with delay time 0ffffH
   MYLP: LOOP MYLP    ;loops tell CX is zero
